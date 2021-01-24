@@ -32,8 +32,8 @@ const actions: ActionTree<State, State> = {
     // 每次请求在header中携带token
     // 并基于role加载对应的角色权限路由/功能列表等信息，也可加载对应的API请求操作
     if (data == 1001) {
-      commit(types.SET_ROLE, 4);
-      sessionStorage.setItem("role", "4");
+      commit(types.SET_ROLE, 3);
+      sessionStorage.setItem("role", "3");
       const { setUserRole } = await import("@/role/UserRole.ts");
       const menuList = setUserRole();
       commit(types.SET_MENULIST, menuList);
