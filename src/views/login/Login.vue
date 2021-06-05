@@ -1,9 +1,11 @@
 <template>
   <div>
     <h1>Login</h1>
+    <p>teacher: 1001; director: 1002; admin: 2002</p>
     <label>
-      number:
-      <input type="text" v-model="number" />
+      <input type="text" v-model="user.number" />
+      <br />
+      <input type="text" v-model="user.password" />
       <br />
       <button @click="login">login</button>
     </label>
@@ -16,13 +18,13 @@ import { LOGIN } from "@/store/VuexTypes";
 
 export default defineComponent({
   setup() {
-    const number = ref(null);
+    const user = ref({ number: "", password: "" });
     const store = useStore();
     const login = () => {
-      store.dispatch(LOGIN, number.value);
+      store.dispatch(LOGIN, user.value);
     };
     return {
-      number,
+      user,
       login
     };
   }

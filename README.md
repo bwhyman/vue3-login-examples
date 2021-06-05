@@ -1,5 +1,15 @@
 # vue3-login-examples
 
+### 2021.06.05
+添加axios/mock，较完整的模拟2类角色，3种权限的登录。  
+登录成功，在header返回token/role数据。  
+保存token在每次请求时携带；保存role用于在用户刷新页面时，直接基于角色渲染组件，避免再次登录。  
+因此，token/role数据要可见的存储在sessionStorage。由于role数据决定着组件渲染，因此如果使用1/2/user/admin等极易被猜到，从而用户可通过直接修改sessionStorage中role值查看其他角色渲染结果。  
+因此，前后端可像互交接口一样约定不同角色数据，例如使用6位16进制数。  
+/role/Role.ts示例中，TEACHER=fe0f2c；DIRECTOR=dcce70；ADMIN=7dab98  
+
+当然一直强调过，所有数据的拉取，请求的发送均无法使用。用户真实权限在加密的token中，向后端的请求均无法越过后端验证拦截器。
+
 ### 说明
 
 基于用户权限，动态显示功能导航(侧边栏等)，让用户仅看见允许自己使用的功能当然是正确的。  

@@ -10,11 +10,11 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "",
-        component: () => import("@/views/main/Welcome.vue")
+        component: () => import("@/views/main/admin/AdminHome.vue")
       },
       {
-        path: "/p1",
-        component: () => import("@/views/main/P1.vue")
+        path: "/admin/backup",
+        component: () => import("@/views/main/admin/Backup.vue")
       }
     ]
   },
@@ -28,11 +28,11 @@ const routes: Array<RouteRecordRaw> = [
 
 const menuList: Menu[] = [
   {
-    title: "学生管理模块",
+    title: "系统管理模块",
     children: [
       {
-        title: "学生管理",
-        path: "/p1"
+        title: "系统备份管理",
+        path: "/admin/backup"
       }
     ]
   }
@@ -40,7 +40,7 @@ const menuList: Menu[] = [
 
 // --------------------
 
-export function setUserRole() {
+export function getRoleMenus() {
   router.removeRoute("nomatch");
   routes.forEach(r => router.addRoute(r));
   return menuList;

@@ -2,16 +2,13 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import { SET_MENULIST, SET_ROLE } from "@/store/VuexTypes";
+import { setRole } from "@/role/Role";
+process.env.NODE_ENV == "development" && require("@/mock/index");
 
-const role = sessionStorage.getItem("role");
-
-if (role) {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const user = require("@/role/UserRole.ts");
-  const menuList = user.setUserRole();
-  store.commit(SET_ROLE, role);
-  store.commit(SET_MENULIST, menuList);
+const roleId = sessionStorage.getItem("role");
+// 获取本地保存的角色值，有则按角色渲染
+if (roleId) {
+  setRole(roleId);
 }
 
 createApp(App)
